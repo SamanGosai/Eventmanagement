@@ -15,31 +15,48 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-const slides = document.querySelector('.slides');
-const dots = document.querySelectorAll('.dot');
-const prev = document.querySelector('.prev');
-const next = document.querySelector('.next');
-let currentIndex = 0;
+document.addEventListener("DOMContentLoaded", () => {
+    const slides = document.querySelectorAll(".slides .image-container");
+    const dots = document.querySelectorAll(".dots .dot");
+    const prevButton = document.querySelector(".prev");
+    const nextButton = document.querySelector(".next");
 
-function updateSlider(index) {
-    const slideWidth = slides.children[0].clientWidth;
-    slides.style.transform = `translateX(-${index * slideWidth}px)`;
-    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-}
+    let currentIndex = 0;
 
-prev.addEventListener('click', () => {
-    currentIndex = (currentIndex === 0) ? slides.children.length - 1 : currentIndex - 1;
-    updateSlider(currentIndex);
-});
+    // Function to update the active slide
+    function updateSlide(index) {
+        // Hide all slides and remove "active" class from dots
+        slides.forEach((slide, i) => {
+            slide.style.display = i === index ? "block" : "none";
+            dots[i].classList.toggle("active", i === index);
+        });
+    }
 
-next.addEventListener('click', () => {
-    currentIndex = (currentIndex === slides.children.length - 1) ? 0 : currentIndex + 1;
-    updateSlider(currentIndex);
-});
+    // Show the previous slide
+    function showPrevSlide() {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+        updateSlide(currentIndex);
+    }
 
-dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-        currentIndex = index;
-        updateSlider(currentIndex);
+    // Show the next slide
+    function showNextSlide() {
+        currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
+        updateSlide(currentIndex);
+    }
+
+    // Event listeners for navigation buttons
+    prevButton.addEventListener("click", showPrevSlide);
+    nextButton.addEventListener("click", showNextSlide);
+
+    // Event listeners for dot navigation
+    dots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+            currentIndex = index;
+            updateSlide(currentIndex);
+        });
     });
+
+    // Initialize the slider
+    updateSlide(currentIndex);
 });
+

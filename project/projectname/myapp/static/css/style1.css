@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('/img/back-login.avif');
+    background-repeat: repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .login-container{
+    background-color: rgb(97, 177, 177,0.4);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 20px;
+    width: 300px;
+    border-radius: 8px;
+  }
+  .login-container h2{
+    text-align: center;
+    margin-bottom: 20px;
+  }
+.form-group{
+    margin-bottom: 20px;
+}
+.form-group label{
+    display: block;
+    margin-top: 20px;
+}
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #9f2727;
+    border-radius: 5px;
+    margin-top: 8px;
+  }
+  .login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #63aa73;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .login-button:hover{
+    background-color: #9f2727;
+  }
+  .form-group input:focus {
+    border-color: #63aa73;
+    box-shadow: 0 0 5px #63aa73;
+    outline: none;
+  }  
+  @media (max-width: 480px) {
+    .login-container {
+      width: 90%;
+    }
+  }
+  
